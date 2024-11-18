@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MasterpolModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Indexn" Type="int" />
+    <Property Name="Oblast" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Street" Type="nvarchar" MaxLength="50" />
+    <Property Name="Home" Type="int" />
+  </EntityType>
+  <EntityType Name="Directors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="FIODirector" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Material_type_import">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Material_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Procent_Braka" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Partner_products_import">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Products" Type="int" />
+    <Property Name="Partners_name" Type="int" />
+    <Property Name="Count_Products" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="Partners_import">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Partners_Type" Type="int" />
+    <Property Name="Partners_Name" Type="int" />
+    <Property Name="Director" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adress" Type="int" />
+    <Property Name="INN" Type="int" />
+    <Property Name="Reiting" Type="int" />
+  </EntityType>
+  <EntityType Name="Partners_Name2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Partners_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Partners_Names">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Partners_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Partners_Types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Partners_Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product_type_import">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Product_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Koificient" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Products_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Products_import">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Products_type" Type="int" />
+    <Property Name="Products_name" Type="int" />
+    <Property Name="Articl" Type="int" />
+    <Property Name="MinCost" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products_import_name">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Products_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Products_import_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Products_Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Partner_products_import_Partners_Names">
+    <End Role="Partners_Names" Type="Self.Partners_Names" Multiplicity="0..1" />
+    <End Role="Partner_products_import" Type="Self.Partner_products_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners_Names">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partner_products_import">
+        <PropertyRef Name="Partners_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partner_products_import_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Partner_products_import" Type="Self.Partner_products_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partner_products_import">
+        <PropertyRef Name="Products" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_import_Adress">
+    <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+    <End Role="Partners_import" Type="Self.Partners_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adress">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partners_import">
+        <PropertyRef Name="Adress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_import_Directors">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="0..1" />
+    <End Role="Partners_import" Type="Self.Partners_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partners_import">
+        <PropertyRef Name="Director" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_import_Partners_Name2">
+    <End Role="Partners_Name2" Type="Self.Partners_Name2" Multiplicity="0..1" />
+    <End Role="Partners_import" Type="Self.Partners_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners_Name2">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partners_import">
+        <PropertyRef Name="Partners_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_import_Partners_Types">
+    <End Role="Partners_Types" Type="Self.Partners_Types" Multiplicity="0..1" />
+    <End Role="Partners_import" Type="Self.Partners_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners_Types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Partners_import">
+        <PropertyRef Name="Partners_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_import_Products_import_name">
+    <End Role="Products_import_name" Type="Self.Products_import_name" Multiplicity="0..1" />
+    <End Role="Products_import" Type="Self.Products_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products_import_name">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products_import">
+        <PropertyRef Name="Products_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_import_Products_import_type">
+    <End Role="Products_import_type" Type="Self.Products_import_type" Multiplicity="0..1" />
+    <End Role="Products_import" Type="Self.Products_import" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products_import_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products_import">
+        <PropertyRef Name="Products_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MasterpolModelContainer">
+    <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directors" EntityType="Self.Directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Material_type_import" EntityType="Self.Material_type_import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partner_products_import" EntityType="Self.Partner_products_import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partners_import" EntityType="Self.Partners_import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partners_Name2" EntityType="Self.Partners_Name2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partners_Names" EntityType="Self.Partners_Names" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partners_Types" EntityType="Self.Partners_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_type_import" EntityType="Self.Product_type_import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_import" EntityType="Self.Products_import" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_import_name" EntityType="Self.Products_import_name" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products_import_type" EntityType="Self.Products_import_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Partner_products_import_Partners_Names" Association="Self.FK_Partner_products_import_Partners_Names">
+      <End Role="Partners_Names" EntitySet="Partners_Names" />
+      <End Role="Partner_products_import" EntitySet="Partner_products_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partner_products_import_Products" Association="Self.FK_Partner_products_import_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Partner_products_import" EntitySet="Partner_products_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_import_Adress" Association="Self.FK_Partners_import_Adress">
+      <End Role="Adress" EntitySet="Adress" />
+      <End Role="Partners_import" EntitySet="Partners_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_import_Directors" Association="Self.FK_Partners_import_Directors">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Partners_import" EntitySet="Partners_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_import_Partners_Name2" Association="Self.FK_Partners_import_Partners_Name2">
+      <End Role="Partners_Name2" EntitySet="Partners_Name2" />
+      <End Role="Partners_import" EntitySet="Partners_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_import_Partners_Types" Association="Self.FK_Partners_import_Partners_Types">
+      <End Role="Partners_Types" EntitySet="Partners_Types" />
+      <End Role="Partners_import" EntitySet="Partners_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_import_Products_import_name" Association="Self.FK_Products_import_Products_import_name">
+      <End Role="Products_import_name" EntitySet="Products_import_name" />
+      <End Role="Products_import" EntitySet="Products_import" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_import_Products_import_type" Association="Self.FK_Products_import_Products_import_type">
+      <End Role="Products_import_type" EntitySet="Products_import_type" />
+      <End Role="Products_import" EntitySet="Products_import" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
