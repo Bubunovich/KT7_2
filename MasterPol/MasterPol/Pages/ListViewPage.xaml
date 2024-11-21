@@ -9,30 +9,44 @@
       Title="ListViewPage">
 
     <Grid>
-        <ListView x:Name="ProductListView">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView x:Name="ProductListView" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <StackPanel>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                <TextBlock Text="{Binding Partners_Type}"></TextBlock>
+                                <TextBlock Text="{Binding Partners_Types.Partners_Type}"></TextBlock>
                                 <TextBlock Text=" | "></TextBlock>
-                                <TextBlock Text="{Binding Partners_Name}"></TextBlock>
+                                <TextBlock Text="{Binding Partners_Name2.Partners_Name}"></TextBlock>
                             </StackPanel>
-                            <TextBlock Text="{Binding Director, StringFormat={} Директор: {0}}"></TextBlock>
+                            <TextBlock Text="{Binding Directors.FIODirector, StringFormat={} Директор: {0}}"></TextBlock>
                             <TextBlock Text="{Binding PhoneNumber, StringFormat={} +7 {0}}"></TextBlock>
                             <TextBlock Text="{Binding Reiting, StringFormat={}Рейтинг: {0}}"></TextBlock>
                      
-                            
                         </StackPanel>
+                        <Button x:Name="ApendButton" Grid.Column="2" Width="150" Height="30" Content="Изменить"
+                                Click="ApendButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"></Button> 
+                        <Button x:Name="DeleteButton" Grid.Column="3" Width="150" Height="30" Content="Удалить"
+                                Click="DeleteButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"></Button>
                         
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button x:Name="AddButton" Width="250" Height="40" Grid.Row="1" 
+                Content="Добавить" Click="AddButton_Click" 
+                FontSize="16"></Button>
     </Grid>
+
 </Page>

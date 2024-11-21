@@ -25,5 +25,20 @@ namespace MasterPol.Pages
             InitializeComponent();
             ProductListView.ItemsSource = Data.MasterpolEntities.GetContext().Partners_import.ToList();
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.Manager.MainFrame.Navigate(new Pages.AddPage());
+        }
+
+        private void ApendButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.Manager.MainFrame.Navigate(new Pages.AddPage());
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
